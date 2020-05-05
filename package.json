@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "connect-pg-simple": "^6.1.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
@@ -23,13 +24,17 @@
   "jest": {
     "testEnvironment": "node",
     "testMatch": [
-        "**/tests/**/*.test.js"
+      "**/tests/**/*.test.js"
     ],
     "setupFilesAfterEnv": [
-        "<rootDir>/tests/setup.js"
+      "<rootDir>/tests/setup.js"
     ],
     "testPathIgnorePatterns": [
-        "/node_modules"
+      "/node_modules"
     ]
+  },
+  "devDependencies": {
+    "jest": "^26.0.1",
+    "supertest": "^4.0.2"
   }
 }
