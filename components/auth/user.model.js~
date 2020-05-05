@@ -1,0 +1,33 @@
+const dbMod = require('../../bin/database.js');
+const db = require('mongodb');
+//dbMod.initDb();
+//const db = require('mongoose');
+
+//const UserDoc = mongoose.model('Cat', {name: String});
+
+class User {
+    constructor() {
+    }
+
+    signup(data) {
+//const db = dbMod.getDb();
+    //const db = req.app.locals.db;
+        console.log('DBB', db);
+        console.log('DATA', data);
+        const userDoc = db.collection('users');
+        return userDoc.insertOne(data)
+        .then(res => {
+            console.log('RESULTS', res);
+            return res;
+        });
+    }
+    login(data) {
+        return quotesCollection.insertOne(data)
+        .then(res => {
+            console.log('RESULTS', res);
+            return res;
+        });
+    }
+}
+
+module.exports = { User };
