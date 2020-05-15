@@ -8,11 +8,9 @@ switch(process.env.NODE_ENV) {
     case 'development':
         config = require('./env/development');
         break;
-    /*
     case 'staging':
         config = require('./env/staging');
         break;
-    */
     case 'test':
         config = require('./env/test');
         break;
