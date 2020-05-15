@@ -1,29 +1,14 @@
 const db = require('postgresorm');
 const tables = require('../../config/tables');
 const table = tables;
+const schema = require('./user.schema');
 
 class User {
     constructor() {
-    /*
-        this.db = dbMod.getDb();
-        console.log('DATAAASE', this.db);
-        this.userDoc = this.db.createCollection('users', {
-            validator: { $jsonSchema: {
-                bsonType: 'object',
-                required: ["email", 'password'],
-                properties: {
-                    email: {
-                        bsonType: 'string',
-                        pattern: '@mongodb\.com$',
-                    },
-                    password: {
-                        bsonType: 'string',
-                    }
-                }
-            }},
-            validationLevel: 'strict'
-        })
-    */
+    }
+
+    schema() {
+        return schema;
     }
 
     signup(data) {

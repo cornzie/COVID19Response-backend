@@ -12,6 +12,10 @@ const database = require('postgresorm');
 const pgSession = new pgSessionStore({ conString: config.database.connection.connectionString,
             tableName: 'session' });
 
+const responsehelper = require('rest_response_helper');
+responsehelper.config(config.baseURL);
+app.use(responsehelper.functions);
+
 const sessionConfig = {
     store:  pgSession,
     name: 'SID',

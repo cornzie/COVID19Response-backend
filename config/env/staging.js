@@ -3,6 +3,7 @@ module.exports = {
         connection: {
             connectionString: process.env.DATABASE_URL
         },
-        debug: true
+        debug: true,
+        baseURL: 'https://covid19nig.herokuapp.com/'
     }
 }

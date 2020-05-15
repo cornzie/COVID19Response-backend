@@ -21,7 +21,8 @@
     "helmet": "^3.22.0",
     "mongoose": "^5.9.10",
     "pg": "^8.0.3",
-    "postgresorm": "^4.7.1"
+    "postgresorm": "^4.7.1",
+    "rest_response_helper": "^3.13.0"
   },
   "jest": {
     "testEnvironment": "node",
