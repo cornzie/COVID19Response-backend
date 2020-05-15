@@ -8,8 +8,7 @@
     "staging": "NODE_ENV=staging node ./bin/www.js",
     "test": "NODE_ENV=test nodemon --exec 'jest --runInBand --verbose'",
     "dev": "NODE_ENV=development nodemon ./bin/www.js",
-    "exportSchema:dev": ". ./SQL/scripts/exportDevSchema.sh",
-    "updateSchema:staging
+    "exportSchema:dev": ". ./SQL/scripts/exportDevSchema.sh"
   },
   "author": "",
   "license": "ISC",
