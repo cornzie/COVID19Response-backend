@@ -7,8 +7,18 @@ class User {
     constructor() {
     }
 
-    schema() {
-        return schema;
+    schema(type = 'signup') {
+        if(type === 'login') {
+            return {
+                $schema: schema.$schema,
+                required: ['email', 'password'],
+                properties: {
+                    email: schema.properties.email,
+                    password: schema.properties.password
+                }
+            }
+        }
+        else return schema;
     }
 
     signup(data) {
