@@ -35,6 +35,79 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: general_health_form; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.general_health_form (
+    _id integer NOT NULL,
+    user_id integer NOT NULL,
+    temperature numeric(4,2) NOT NULL,
+    sore_throat boolean NOT NULL,
+    coughing boolean NOT NULL,
+    comments text,
+    short_breath boolean NOT NULL,
+    date timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+--
+-- Name: general_health_form__id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.general_health_form__id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: general_health_form__id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.general_health_form__id_seq OWNED BY public.general_health_form._id;
+
+
+--
+-- Name: quarantine_form; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.quarantine_form (
+    _id integer NOT NULL,
+    user_id integer NOT NULL,
+    date_of_arrival timestamp without time zone NOT NULL,
+    passport_no integer NOT NULL,
+    transit_port character varying(30) NOT NULL,
+    date_of_departure timestamp without time zone NOT NULL,
+    address text,
+    phone_number character varying(20) NOT NULL,
+    date timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+--
+-- Name: quarantine_form__id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.quarantine_form__id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: quarantine_form__id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.quarantine_form__id_seq OWNED BY public.quarantine_form._id;
+
+
+--
 -- Name: reminders; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -114,6 +187,20 @@ ALTER SEQUENCE public.users__id_seq OWNED BY public.users._id;
 
 
 --
+-- Name: general_health_form _id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.general_health_form ALTER COLUMN _id SET DEFAULT nextval('public.general_health_form__id_seq'::regclass);
+
+
+--
+-- Name: quarantine_form _id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.quarantine_form ALTER COLUMN _id SET DEFAULT nextval('public.quarantine_form__id_seq'::regclass);
+
+
+--
 -- Name: reminders _id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -125,6 +212,14 @@ ALTER TABLE ONLY public.reminders ALTER COLUMN _id SET DEFAULT nextval('public.r
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN _id SET DEFAULT nextval('public.users__id_seq'::regclass);
+
+
+--
+-- Name: general_health_form general_health_form__id_user_id_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.general_health_form
+    ADD CONSTRAINT general_health_form__id_user_id_key UNIQUE (_id, user_id);
 
 
 --
@@ -164,6 +259,22 @@ ALTER TABLE ONLY public.users
 --
 
 CREATE INDEX "IDX_session_expire" ON public.session USING btree (expire);
+
+
+--
+-- Name: general_health_form general_health_form_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.general_health_form
+    ADD CONSTRAINT general_health_form_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(_id);
+
+
+--
+-- Name: quarantine_form quarantine_form_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.quarantine_form
+    ADD CONSTRAINT quarantine_form_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(_id);
 
 
 --

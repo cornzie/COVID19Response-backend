@@ -4,8 +4,12 @@ const user = require('../../components/auth/auth.ctrl');
 const notification = require('../../components/notifications/notifications.ctrl');
 
 router.get('/', function(req, res) {
-    res.link('signup', '/signup');
-    res.link('login', '/login');
+    if(!req.session.user_id) {
+        res.link('signup', '/signup');
+        res.link('login', '/login');
+    } else {
+        res.link('fill_form_quarantine', '/forms/quarantine');
+    }
     return res.success('Covid19 Nigeria Staging Api');
 });
 router.post('/admin/create-account', user.createAdmin);
