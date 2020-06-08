@@ -13,15 +13,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
     "connect-pg-simple": "^6.1.0",
     "cors": "^2.8.5",
+    "cron": "^1.8.2",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "faker": "^4.1.0",
     "helmet": "^3.22.0",
     "mongoose": "^5.9.10",
     "pg": "^8.0.3",
-    "postgresorm": "^4.7.1",
+    "postgresorm": "^4.8.1",
     "rest_response_helper": "^3.13.0"
   },
   "jest": {
