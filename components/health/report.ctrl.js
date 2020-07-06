@@ -30,4 +30,14 @@ user.fillQuarantineForm = (req, res) => {
     }
 }
 
+user.healthDiagnostics = (req, res) => {
+    let form = new HealthForm();
+
+    return form.diagnostics()
+    .then(result => {
+        console.log('RESSS', result);
+        return res.success(result);
+    });
+}
+
 module.exports = { user, admin };
