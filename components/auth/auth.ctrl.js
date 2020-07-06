@@ -10,7 +10,9 @@ module.exports = {
                 //req.session.touch();
                 req.session.email = result.email;
                 req.session.user_id = result._id;
-                return res.send("Logging you in");
+                return res.add('user', result);
+                return res.success();
+                // return res.send("Logging you in");
             })
             .catch(err => next(err));
         } else if (req.method === 'GET') {
