@@ -13,7 +13,16 @@ class HealthForm {
     }
 
     create(data) {
-        return db.create(table.healthForm, data);
+        //return db.create(table.healthForm, data);
+        return db.customquery(`INSERT INTO ${ table.healthForm } (temperature, sore_throat, coughing, comments, short_breath) 
+            VALUES ($1, $2, $3, $4, $5)
+            ON CONFLICT (id) DO UPDATE 
+              SET temperature = $1, sore_throat = $2, coughing = $3, comments = $4, short_breath = $5
+        `, [data.temperature, data.sore_throat, data.coughing, data.comments, data.short_breath])
+        .then(res => res.rows);
+    }
+    diagnostics() {
+        return db.customquery(`SELECT * FROM ${ table.healthForm }`).then(res => res.rows);
     }
 }
 
