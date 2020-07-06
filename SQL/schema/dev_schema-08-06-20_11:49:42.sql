@@ -46,7 +46,7 @@ CREATE TABLE public.general_health_form (
     coughing boolean NOT NULL,
     comments text,
     short_breath boolean NOT NULL,
-    date date DEFAULT CURRENT_TIMESTAMP NOT NULL
+    date timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
 
