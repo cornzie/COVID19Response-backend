@@ -2,14 +2,14 @@ const axios = require("axios");
 
 module.exports = {
     list: (req, res) => {
-        console.log('LISTING BOK');
+        console.log('LISTING BOK', process.env.RAPIDAPI_KEY);
         axios({
             "method":"GET",
             "url":"https://google-books.p.rapidapi.com/volumes?filter=full",
             "headers":{
             "content-type":"application/octet-stream",
             "x-rapidapi-host":"google-books.p.rapidapi.com",
-            "x-rapidapi-key":"6b0c036e8fmsh0795d1677ec060dp1a3b41jsn7bb204331959",
+            "x-rapidapi-key": process.env.RAPIDAPI_KEY,
             "useQueryString":true
             }
         })
