@@ -8,9 +8,16 @@ module.exports = {
             return user.login(req.body)
             .then( result => {
                 //req.session.touch();
+                console.log('LOGGED IN');
                 req.session.email = result.email;
                 req.session.user_id = result._id;
-                return res.add('user', result);
+                res.add('user', {
+                    firstname: result.firstname,
+                    lastname: result.lastname,
+                    email: result.email,
+                    phone: result.phone,
+                    admin: result.admin
+                });
                 return res.success();
                 // return res.send("Logging you in");
             })
