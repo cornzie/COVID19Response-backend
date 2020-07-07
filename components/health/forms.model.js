@@ -4,6 +4,24 @@ const table = require('../../config/tables');
 const healthFormSchema = require('./healthInfo.schema');
 const quarantineFormSchema = require('./quarantineForm.schema');
 
+function validDate(date) {
+    // Is probably dd-mm-yyyy. Will treat it like that first.
+    let months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+    let splitDate = date.split('-');
+    splitDate[1] = months[splitDate[1] - 1];
+    let date2 = splitDate.join('-');
+    let validate = !isNaN(Date.parse(date2));
+    if(validate) {
+        return date2;
+    } else {
+        validate = !isNaN(Date.parse(date));
+        if(validate) { // validate. Lol
+            return date;
+        } else throw new Error('Invalid Date');
+    }
+
+}
+
 class HealthForm {
     constructor(){
     }
@@ -35,10 +53,13 @@ class QuarantineForm {
     }
 
     create(data) {
-        let date_of_arrival = new Date(data.date_of_arrival);
+        console.log('DATA', data);
+        let date_of_arrival = validDate(data.date_of_arrival);
+        let date_of_departure = validDate(data.date_of_departure);
         delete data.date_of_arrival;
-        console.log({date_of_arrival, ...data});
-        return db.create(table.travelForm, {date_of_arrival, ...data});
+        delete data.date_of_departure;
+        console.log({date_of_arrival, date_of_departure, ...data});
+        return db.create(table.travelForm, {date_of_arrival, date_of_departure, ...data});
     }
 }
 
